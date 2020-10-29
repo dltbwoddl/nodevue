@@ -1,0 +1,22 @@
+{
+  "name": "nodevue",
+  "version": "0.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dltbwoddl/nodevue.git"
+  },
+  "keywords": [
+    "nodevue"
+  ],
+  "author": "lim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dltbwoddl/nodevue/issues"
+  },
+  "homepage": "https://github.com/dltbwoddl/nodevue#readme"
+}

@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/dltbwoddl/nodevue/issues"
   },
-  "homepage": "https://github.com/dltbwoddl/nodevue#readme"
+  "homepage": "https://github.com/dltbwoddl/nodevue#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
 }

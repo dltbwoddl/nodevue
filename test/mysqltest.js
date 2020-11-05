@@ -1,5 +1,4 @@
-const { ContextRunnerImpl } = require('express-validator/src/chain')
-const { database } = require('firebase')
+
 const mysql = require('mysql')
 
 //연결을 하기전 초기화
@@ -55,3 +54,44 @@ connection.query('update User set lastlogin=now() where uid=?', ['user1'], funct
 //end를 두번째 쿼리 안에 넣어줘야 한다.
 //이렇게 뎁스가 길어지면서 콜백함수 지옥이라는 명칭이 등장
 //이런 문제를 해결하는 도구가 블루버드이다.
+
+
+//트랜잭션이란 여러 단계의 처리를 하나의 처리처럼 다루는 기능입니다.
+//트랜잭션의 실행 결과를 데이터 베이스에 반영하는 것을 커밋
+//반영하지 않고 원래 상태로 되돌리는 것을 롤백
+connection.beginTransaction(()=>{
+    connection.query('update User set lastlogin=now() where uid=?', ['user1'], function (error, results, fields) {
+        //이안에 있는 코드는 메인스레드가 실행
+        if (error) throw error;
+        console.log(results)
+        connection.query('select * from User where uid=?', ['user2'], function (error, results, fields) {
+            //이안에 있는 코드는 메인스레드가 실행
+            if (error) throw error;
+            console.log(results)
+            connection.query('delete..',(err)=>{
+                if (err){
+                    connection.rollback();
+                } else{
+                    connection.commit()
+                }
+                connection.end()
+            })
+    
+        })
+    
+    })
+})
+//begin
+//commit
+//rollback 이것을 실행해주는 코드
+//점점 더 복잡해진다.이런 복잡성을 낮춰주는 bluebird로 해결할 수 있다.
+//만약 웹서버이면 디비는 한 번에 받을 수 있는 섹션 수에 한계가 있어
+//connection.end()를 해주지 않으면 서버가 죽을 수 있다.
+//복잡하고 설계가 어렵다.
+//connection pool가 필요하다.
+//connection pool은 데이터 베이스에 연결된 connection을 만들어 pool에 보관하였다가 
+//필요할 때 pool에서 가져다 쓴 후 pool에 반환하는 기법을 말한다.
+// 여러 connection을 사용할 수 있도록 해 데이터 베이스가 더큰 부하를 견딜 수 있다.
+//또한 connection을 닫지 않아도 되기 때문에 성능이 향상 된다.
+
+//위의 코드의 이러한 문제를 connection pool과 안전을 보장받는 비동기 처리 bluebird(promise) 모듈,

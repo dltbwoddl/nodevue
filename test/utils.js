@@ -12,6 +12,17 @@ const Ekey = "nodevue";
 
 module.exports={
     //이미지를 담은 url을 가져오는 함수
+
+    
+    encryptSha2(data,key){
+        if(!data) return null;
+        key=key||Ekey;
+        try{
+            return Crypto.SHA256(data+key).toString()
+        }catch(err){
+
+        }
+    },
     encrypt(data,key){
         return Crypto.AES.encrypt(data,key || Ekey).toString();
     },

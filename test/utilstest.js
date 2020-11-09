@@ -6,7 +6,8 @@ let enc = utils.encrypt(str,key)
 console.log(enc);
 let dec=utils.decrtpt(enc,key)
 console.log(dec);
-
+let sha=utils.encryptSha2(str,'hi')
+console.log(sha)
 
 return
 let url ='https://www.naver.com/';

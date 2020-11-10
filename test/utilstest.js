@@ -1,5 +1,10 @@
 const utils = require('./utils')
 
+let map = utils.makeMap('name','lim');
+console.log(map.get('name'))
+
+return
+
 let str = "hello";
 let key = "hi"
 let enc = utils.encrypt(str,key)

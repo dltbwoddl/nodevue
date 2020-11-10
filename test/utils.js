@@ -12,7 +12,12 @@ const Ekey = "nodevue";
 
 module.exports={
     //이미지를 담은 url을 가져오는 함수
-
+makeMap(key,value){
+    const map = new Hashmap();
+    map.set(key,value);
+    console.log(map.get(key))
+    return map
+},
     
     encryptSha2(data,key){
         if(!data) return null;

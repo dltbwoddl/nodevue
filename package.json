@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dltbwoddl/nodevue#readme",
   "dependencies": {
+    "async": "^3.2.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "crypto-js": "^4.0.0",
@@ -27,6 +28,7 @@
     "express": "^4.17.1",
     "hashmap": "^2.4.0",
     "mysql": "^2.18.1",
+    "needle": "^2.5.2",
     "nodemon": "^2.0.6",
     "open-graph-scraper": "^4.7.0"
   }
